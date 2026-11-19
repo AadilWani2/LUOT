@@ -62,79 +62,97 @@ export default function Home() {
 
   return (
     <div>
-      {/* 1. Editorial Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-12 sm:pb-20">
-        <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Column: Headline & Intro */}
-          <div className="lg:col-span-5 pt-4 z-10">
-            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-luot-teal leading-[1.15] tracking-tight">
-              A{' '}
-              <span className="relative inline-block">
-                <span className="relative z-10">leading,</span>
-                <span className="absolute left-0 bottom-1 w-full h-4 bg-luot-gold -rotate-1 z-0 rounded-xs animate-highlight" />
-              </span>{' '}
-              future-ready technology university
-            </h1>
-            <p className="mt-5 text-base text-luot-teal/75 leading-relaxed">
-              Choose from industry-aligned undergraduate and postgraduate programs
-              in engineering, computing, and applied sciences at Loyal University
-              Of Technology.
-            </p>
+      {/* 1. Editorial Hero & Course Finder (Mobile-Polished) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-10 sm:pb-16">
+        {/* Top Editorial Headline */}
+        <div className="max-w-3xl mb-6 sm:mb-10 animate-fade-up">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-luot-gold/20 text-luot-teal text-[11px] font-bold uppercase tracking-widest mb-3 sm:mb-4">
+            <GraduationCap size={14} className="text-luot-teal" />
+            Admissions Open 2026–27
+          </span>
+
+          <h1 className="font-serif text-[2rem] leading-[1.15] sm:text-5xl lg:text-[3.5rem] font-bold text-luot-teal tracking-tight">
+            Shaping tomorrow&apos;s{' '}
+            <span className="relative inline-block">
+              <span className="relative z-10">leading</span>
+              <span className="absolute left-0 bottom-0.5 sm:bottom-1 w-full h-2.5 sm:h-3.5 bg-luot-gold/80 -rotate-1 z-0 rounded-xs animate-highlight" />
+            </span>{' '}
+            engineers &amp; innovators.
+          </h1>
+
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base text-luot-teal/75 leading-relaxed max-w-xl">
+            Loyal University Of Technology blends rigorous engineering
+            foundations with hands-on research labs, industry mentorship, and
+            transparent academic governance.
+          </p>
+        </div>
+
+        {/* Hero Image + Overlapping Course Finder */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-start">
+          {/* Campus Photo */}
+          <div className="lg:col-span-12 relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-md bg-luot-teal/10 aspect-[4/3] sm:aspect-[16/8] lg:aspect-[21/9]">
+            <img
+              src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
+              alt="Loyal University Of Technology Campus"
+              className="w-full h-full object-cover animate-image-settle"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-luot-teal/50 via-transparent to-transparent" />
           </div>
 
-          {/* Right Column: Rounded Campus Image */}
-          <div className="lg:col-span-7">
-            <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg aspect-[16/10] bg-luot-teal/10">
-              <img
-                src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1400&q=80"
-                alt="Loyal University Of Technology Campus"
-                className="w-full h-full object-cover animate-image-settle"
-              />
+          {/* Floating Course Finder Card */}
+          <div className="lg:col-span-7 -mt-8 sm:-mt-14 lg:-mt-32 mx-2 sm:mx-4 lg:mx-0 lg:ml-8 relative z-20 bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-luot-teal/10 p-4 sm:p-7">
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <h2 className="font-serif text-lg sm:text-2xl font-bold text-luot-teal">
+                Find your program
+              </h2>
+              <Link
+                to="/curriculum"
+                className="text-xs font-semibold text-luot-teal/70 hover:text-luot-gold inline-flex items-center gap-1"
+              >
+                All Courses <ArrowRight size={13} />
+              </Link>
             </div>
-          </div>
 
-          {/* Overlapping Floating Course Finder Card */}
-          <div className="lg:col-span-7 -mt-10 sm:-mt-14 lg:-mt-36 mx-1 sm:mx-0 z-20 bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-luot-teal/10 p-5 sm:p-8">
-            <h2 className="font-serif text-2xl font-semibold text-luot-teal mb-4">
-              Course finder
-            </h2>
-            <form onSubmit={handleCourseSearch} className="flex flex-col sm:flex-row gap-3">
+            {/* Mobile-Friendly Search Bar */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                navigate('/curriculum');
+              }}
+              className="flex flex-col sm:flex-row gap-2.5"
+            >
               <div className="relative flex-1">
                 <Search
-                  size={18}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-luot-teal/50"
+                  size={16}
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-luot-teal/45"
                 />
                 <input
                   type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="I want to study... (e.g. B.Tech CSE, AI, BCA)"
-                  className="w-full pl-11 pr-4 py-3 rounded-full border border-luot-teal/25 text-sm focus:outline-none focus:border-luot-teal"
+                  placeholder="Search B.Tech CSE, AI, Robotics..."
+                  className="w-full pl-10 pr-4 py-3 rounded-xl sm:rounded-full bg-luot-bg border border-luot-teal/15 text-sm text-luot-teal placeholder:text-luot-teal/45 focus:outline-none focus:border-luot-teal focus:bg-white"
                 />
               </div>
               <button
                 type="submit"
-                className="px-6 py-3 rounded-xl bg-luot-gold hover:bg-luot-gold-hover text-luot-teal font-semibold text-sm transition-all duration-200 active:scale-[0.98] cursor-pointer"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl sm:rounded-full bg-luot-teal hover:bg-luot-teal-dark text-white font-semibold text-sm transition-colors active:scale-[0.98] cursor-pointer shrink-0"
               >
-                Find course
+                Explore
               </button>
             </form>
 
-            <div className="mt-5">
-              <p className="text-xs font-semibold text-luot-teal/70 mb-2.5">
-                Browse courses
-              </p>
-              <div className="flex flex-nowrap sm:flex-wrap overflow-x-auto no-scrollbar gap-2 pb-1">
-                {['B.Tech', 'M.Tech', 'BCA / MCA', 'Curriculum', 'Admissions'].map((tag) => (
+            {/* Swipeable Quick Department Pills */}
+            <div className="mt-4 pt-3.5 border-t border-luot-teal/10 flex flex-nowrap sm:flex-wrap overflow-x-auto no-scrollbar gap-2">
+              {['Computer Science', 'AI & Data Science', 'Electronics', 'Mechanical', 'Civil'].map(
+                (course) => (
                   <Link
-                    key={tag}
-                    to={tag === 'Admissions' ? '/admissions' : '/curriculum'}
-                    className="px-3.5 py-1.5 rounded-full bg-luot-bg hover:bg-luot-teal/10 text-xs font-medium text-luot-teal transition-colors shrink-0"
+                    key={course}
+                    to="/curriculum"
+                    className="shrink-0 px-3.5 py-1.5 rounded-full bg-luot-bg hover:bg-luot-gold/25 text-luot-teal text-xs font-semibold transition-colors"
                   >
-                    {tag}
+                    {course}
                   </Link>
-                ))}
-              </div>
+                )
+              )}
             </div>
           </div>
         </div>
@@ -143,7 +161,7 @@ export default function Home() {
       {/* 2. Semester Notification Strip (Auth-Aware) */}
       <Reveal>
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-          <div className="bg-luot-teal text-white rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-md">
+          <div className="bg-luot-teal text-white rounded-2xl p-5 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-md">
             <div className="flex items-start gap-4">
               <div className="p-3 rounded-xl bg-luot-gold/20 text-luot-gold shrink-0">
                 <BellRing size={24} />
@@ -396,7 +414,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="lg:col-span-7 grid grid-cols-3 gap-4">
+              <div className="lg:col-span-7 grid grid-cols-3 gap-2.5 sm:gap-4">
                 {[
                   { value: '95%', label: 'Placement Rate' },
                   { value: '24 LPA', label: 'Highest Package' },
@@ -404,7 +422,7 @@ export default function Home() {
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="bg-luot-bg rounded-2xl p-5 text-center border border-luot-teal/8"
+                    className="bg-luot-bg rounded-2xl p-3 sm:p-5 text-center border border-luot-teal/8"
                   >
                     <p className="font-serif text-2xl sm:text-3xl font-bold text-luot-teal">
                       {stat.value}
