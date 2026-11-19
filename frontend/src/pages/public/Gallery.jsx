@@ -6,6 +6,7 @@ import {
   Camera,
   Images,
 } from 'lucide-react';
+import SEO from '../../components/SEO';
 
 const GALLERY_COLLECTIONS = [
   {
@@ -167,6 +168,37 @@ export default function Gallery() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
+      <SEO
+        title="Campus Gallery & Advanced Technical Facilities"
+        description="Explore high-definition photos of the Loyal University Of Technology campus: digital libraries, robotics research hubs, computing clusters, and student spaces."
+        canonical="/gallery"
+        keywords="LUOT campus photos, university gallery, engineering labs pictures, campus infrastructure, robotics lab images"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'ImageGallery',
+          name: 'Loyal University Of Technology Campus Gallery',
+          url: 'https://luot.edu.in/gallery',
+          description:
+            'Interactive photo tour of the LUOT campus, libraries, laboratories, and academic centres.',
+          breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://luot.edu.in/',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Gallery',
+                item: 'https://luot.edu.in/gallery',
+              },
+            ],
+          },
+        }}
+      />
       {/* Header */}
       <div className="max-w-2xl mb-8 sm:mb-10 animate-fade-up">
         <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-luot-gold">
@@ -251,7 +283,7 @@ export default function Gallery() {
                   <img
                     key={idx}
                     src={p.url}
-                    alt=""
+                    alt={`${collection.title} preview ${idx + 1}`}
                     className="w-8 h-8 rounded-full object-cover ring-2 ring-white"
                   />
                 ))}

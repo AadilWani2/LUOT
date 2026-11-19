@@ -10,6 +10,7 @@ import {
   X,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../../components/SEO';
 
 const STEPS = [
   {
@@ -79,6 +80,37 @@ export default function Admissions() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
+      <SEO
+        title="Admissions 2026–27 — B.Tech, BCA & MCA Applications"
+        description="Transparent, merit-based admissions for undergraduate and postgraduate engineering programs at Loyal University Of Technology. Review eligibility, key dates, and apply online."
+        canonical="/admissions"
+        keywords="LUOT admissions 2026, engineering admissions, B.Tech eligibility, B.Tech CSE admission, BCA admission, MCA entrance, engineering scholarships"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: 'Admissions 2026–27 | Loyal University Of Technology',
+          url: 'https://luot.edu.in/admissions',
+          description:
+            'Admissions process, eligibility criteria, and online application portal for LUOT engineering and computer science degree programs.',
+          breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://luot.edu.in/',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Admissions',
+                item: 'https://luot.edu.in/admissions',
+              },
+            ],
+          },
+        }}
+      />
       {/* 1. Split Editorial Hero with Campus Image */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center mb-12 sm:mb-16">
         <div className="lg:col-span-6 animate-fade-up">

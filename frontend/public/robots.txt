@@ -1,0 +1,21 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /admissions
+Allow: /curriculum
+Allow: /gallery
+Allow: /notices
+Disallow: /student/
+Disallow: /hod/
+Disallow: /principal/
+Disallow: /login/
+Disallow: /register
+Disallow: /api/
+
+# Host
+Host: https://luot.edu.in
+
+# Sitemaps
+Sitemap: https://luot.edu.in/sitemap.xml
+

@@ -24,6 +24,7 @@ import { useAuth } from '../../context/AuthContext';
 import NoticeCard from '../../components/NoticeCard';
 import Reveal from '../../components/Reveal';
 import CountUp from '../../components/CountUp';
+import SEO from '../../components/SEO';
 
 export default function Home() {
   const { user, logout } = useAuth();
@@ -63,6 +64,31 @@ export default function Home() {
 
   return (
     <div className="overflow-x-hidden">
+      <SEO
+        title="Premier Engineering & Technology Institute"
+        description="Loyal University Of Technology (LUOT) is a leading institution offering accredited B.Tech, BCA, MCA, and M.Tech degrees in Computer Science, AI/ML, and Electronics. Apply for 2026–27."
+        canonical="/"
+        keywords="LUOT, Loyal University Of Technology, engineering college, B.Tech admissions 2026, computer science engineering, technology institute, best engineering university"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: 'Loyal University Of Technology (LUOT)',
+          url: 'https://luot.edu.in/',
+          description:
+            'Loyal University Of Technology (LUOT) offers accredited engineering and technology programs in computer science, robotics, and electronics.',
+          breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://luot.edu.in/',
+              },
+            ],
+          },
+        }}
+      />
       {/* 1. Hero & Program Finder */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-10 pb-8 sm:pb-14">
         {/* Top Editorial Headline */}

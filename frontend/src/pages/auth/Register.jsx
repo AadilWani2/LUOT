@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserPlus, AlertCircle, CheckCircle2 } from 'lucide-react';
 import api from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
+import SEO from '../../components/SEO';
 
 const DEPARTMENTS = [
   'Computer Science',
@@ -58,6 +59,12 @@ export default function Register() {
 
   return (
     <div className="max-w-lg mx-auto px-4 py-8 sm:py-14 animate-fade-up">
+      <SEO
+        title="Student & Faculty Registration"
+        description="Create your student or faculty academic profile at Loyal University Of Technology to access academic systems."
+        canonical="/register"
+        noIndex={true}
+      />
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-luot-teal/10 shadow-lg">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-luot-teal/10 text-luot-teal text-xs font-bold mb-4">
           <UserPlus size={15} />

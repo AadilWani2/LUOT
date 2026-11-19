@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GraduationCap, AlertCircle } from 'lucide-react';
 import api from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
+import SEO from '../../components/SEO';
 
 export default function StudentLogin() {
   const [email, setEmail] = useState('');
@@ -34,6 +35,12 @@ export default function StudentLogin() {
 
   return (
     <div className="max-w-md mx-auto px-4 py-8 sm:py-16 animate-fade-up">
+      <SEO
+        title="Student Portal Login"
+        description="Sign in to your LUOT student account to access semester-specific circulars, grade reports, fee management, and grievance redressal."
+        canonical="/login/student"
+        noIndex={true}
+      />
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-luot-teal/10 shadow-lg">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-luot-teal/10 text-luot-teal text-xs font-bold mb-4">
           <GraduationCap size={15} />

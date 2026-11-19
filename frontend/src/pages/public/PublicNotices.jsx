@@ -13,6 +13,7 @@ import {
 import api, { API_BASE_URL } from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
 import NoticeCard from '../../components/NoticeCard';
+import SEO from '../../components/SEO';
 
 const CATEGORIES = ['All', 'General', 'Exams', 'Admissions', 'Events', 'Academics'];
 
@@ -59,6 +60,37 @@ export default function PublicNotices() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
+      <SEO
+        title="Official University Notice Board & Academic Circulars"
+        description="Official circulars, exam notifications, admission announcements, and downloadable PDF notices released by Loyal University Of Technology administration."
+        canonical="/notices"
+        keywords="LUOT notices, university circulars, exam dates, engineering college notice board, HOD notifications, Principal orders"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Official Notice Board | Loyal University Of Technology',
+          url: 'https://luot.edu.in/notices',
+          description:
+            'All-university announcements, academic circulars, exam timetables, and official PDF documents.',
+          breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://luot.edu.in/',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Notices',
+                item: 'https://luot.edu.in/notices',
+              },
+            ],
+          },
+        }}
+      />
       {/* 1. Editorial Header */}
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 sm:gap-6 mb-8 sm:mb-10 animate-fade-up">
         <div className="max-w-2xl">

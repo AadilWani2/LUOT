@@ -10,6 +10,7 @@ import {
   Award,
   CheckCircle2,
 } from 'lucide-react';
+import SEO from '../../components/SEO';
 
 const DEPARTMENT_META = {
   'Computer Science': {
@@ -120,6 +121,37 @@ export default function Curriculum() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
+      <SEO
+        title="Academic Curriculum & Engineering Course Syllabi"
+        description="Comprehensive Choice-Based Credit System (CBCS) curriculum for B.Tech in Computer Science and Electronics & Communication at LUOT. Review semester syllabi and credits."
+        canonical="/curriculum"
+        keywords="LUOT curriculum, engineering syllabus, B.Tech computer science subjects, ECE syllabus, semester course breakdown, credit system"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: 'Academic Curriculum | Loyal University Of Technology',
+          url: 'https://luot.edu.in/curriculum',
+          description:
+            'Choice-Based Credit System engineering curriculum for B.Tech CSE and ECE across Semesters 1 to 8.',
+          breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://luot.edu.in/',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Curriculum',
+                item: 'https://luot.edu.in/curriculum',
+              },
+            ],
+          },
+        }}
+      />
       {/* 1. Split Editorial Hero with Lab Image */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center mb-10 sm:mb-14">
         <div className="lg:col-span-6 animate-fade-up">

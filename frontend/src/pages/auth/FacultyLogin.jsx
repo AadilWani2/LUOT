@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ShieldCheck, AlertCircle } from 'lucide-react';
 import api from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
+import SEO from '../../components/SEO';
 
 export default function FacultyLogin() {
   const [email, setEmail] = useState('');
@@ -39,6 +40,12 @@ export default function FacultyLogin() {
 
   return (
     <div className="max-w-md mx-auto px-4 py-8 sm:py-16 animate-fade-up">
+      <SEO
+        title="Faculty & Administration Portal Login"
+        description="Authorized administrative access for Loyal University Of Technology Principal, Academic Deans, and Departmental HODs."
+        canonical="/login/faculty"
+        noIndex={true}
+      />
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-luot-teal/10 shadow-lg">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-luot-gold/25 text-luot-teal text-xs font-bold mb-4">
           <ShieldCheck size={15} />

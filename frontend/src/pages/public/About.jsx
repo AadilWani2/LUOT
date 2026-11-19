@@ -1,4 +1,5 @@
 import { Target, Eye, ShieldCheck, Building, Sparkles } from 'lucide-react';
+import SEO from '../../components/SEO';
 
 const CAMPUS_HIGHLIGHTS = [
   {
@@ -24,6 +25,37 @@ const CAMPUS_HIGHLIGHTS = [
 export default function About() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
+      <SEO
+        title="About LUOT — Heritage, Leadership & Academic Vision"
+        description="Learn about the mission, world-class faculty, accredited research labs, and academic leadership driving innovation at Loyal University Of Technology."
+        canonical="/about"
+        keywords="About LUOT, university history, engineering leadership, faculty, research labs, Loyal University vision"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'AboutPage',
+          name: 'About Loyal University Of Technology',
+          url: 'https://luot.edu.in/about',
+          description:
+            'Autonomous technical university committed to hands-on engineering education, interdisciplinary research, and transparent academic governance.',
+          breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://luot.edu.in/',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'About',
+                item: 'https://luot.edu.in/about',
+              },
+            ],
+          },
+        }}
+      />
       {/* 1. Split Hero Header with Campus Image */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center mb-12 sm:mb-16">
         <div className="lg:col-span-6 animate-fade-up">
@@ -53,7 +85,7 @@ export default function About() {
                 e.currentTarget.src =
                   'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80';
               }}
-              alt="LUOT Campus"
+              alt="Loyal University Of Technology Main Academic Building"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 animate-image-settle"
             />
             <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-2xl shadow-md flex items-center gap-2.5">
