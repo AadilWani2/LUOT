@@ -45,7 +45,7 @@ export default function App() {
         <div className="min-h-screen flex flex-col bg-luot-bg">
           <Navbar />
           <ScrollProgress />
-          <main className="flex-1 pt-16 sm:pt-20 pb-20 md:pb-0">
+          <main className="flex-1 pt-16 sm:pt-20">
             <Routes>
               {/* Public Routes */}
               <Route path="/" element={<Home />} />

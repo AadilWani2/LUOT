@@ -166,14 +166,14 @@ export default function Gallery() {
   }, [activeCollection, closeModal, showNext, showPrev]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
       {/* Header */}
-      <div className="max-w-2xl mb-10 animate-fade-up">
+      <div className="max-w-2xl mb-8 sm:mb-10 animate-fade-up">
         <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-luot-gold">
           <Camera size={14} />
           Inside LUOT
         </span>
-        <h1 className="font-serif text-4xl sm:text-5xl font-bold text-luot-teal mt-2 leading-tight">
+        <h1 className="font-serif text-3xl sm:text-5xl font-bold text-luot-teal mt-2 leading-tight">
           Campus{' '}
           <span className="relative inline-block">
             <span className="relative z-10">Gallery</span>

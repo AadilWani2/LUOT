@@ -58,14 +58,14 @@ export default function PublicNotices() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
       {/* 1. Editorial Header */}
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 animate-fade-up">
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 sm:gap-6 mb-8 sm:mb-10 animate-fade-up">
         <div className="max-w-2xl">
           <span className="text-xs font-bold uppercase tracking-widest text-luot-gold">
             Official Circulars & Updates
           </span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-luot-teal mt-2 leading-tight">
+          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-luot-teal mt-1 leading-tight">
             Public{' '}
             <span className="relative inline-block">
               <span className="relative z-10">Notice Board</span>

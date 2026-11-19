@@ -57,8 +57,8 @@ export default function Register() {
   };
 
   return (
-    <div className="max-w-lg mx-auto px-4 py-14 animate-fade-up">
-      <div className="bg-white rounded-3xl p-8 border border-luot-teal/10 shadow-lg">
+    <div className="max-w-lg mx-auto px-4 py-8 sm:py-14 animate-fade-up">
+      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-luot-teal/10 shadow-lg">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-luot-teal/10 text-luot-teal text-xs font-bold mb-4">
           <UserPlus size={15} />
           LUOT Account Registration

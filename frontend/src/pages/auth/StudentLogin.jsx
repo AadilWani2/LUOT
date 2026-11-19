@@ -33,8 +33,8 @@ export default function StudentLogin() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-4 py-16 animate-fade-up">
-      <div className="bg-white rounded-3xl p-8 border border-luot-teal/10 shadow-lg">
+    <div className="max-w-md mx-auto px-4 py-8 sm:py-16 animate-fade-up">
+      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-luot-teal/10 shadow-lg">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-luot-teal/10 text-luot-teal text-xs font-bold mb-4">
           <GraduationCap size={15} />
           Student Portal

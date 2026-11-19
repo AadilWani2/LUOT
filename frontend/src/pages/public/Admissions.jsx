@@ -78,14 +78,14 @@ export default function Admissions() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
       {/* 1. Split Editorial Hero with Campus Image */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center mb-12 sm:mb-16">
         <div className="lg:col-span-6 animate-fade-up">
           <span className="text-xs font-bold uppercase tracking-widest text-luot-gold">
             Admissions 2026–27
           </span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-luot-teal mt-2 leading-tight">
+          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-luot-teal mt-2 leading-tight">
             Start your{' '}
             <span className="relative inline-block">
               <span className="relative z-10">engineering</span>

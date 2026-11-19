@@ -119,14 +119,14 @@ export default function Curriculum() {
   const activeMeta = DEPARTMENT_META[department];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
       {/* 1. Split Editorial Hero with Lab Image */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-14">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center mb-10 sm:mb-14">
         <div className="lg:col-span-6 animate-fade-up">
           <span className="text-xs font-bold uppercase tracking-widest text-luot-gold">
             Academic Structure
           </span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-luot-teal mt-2 leading-tight">
+          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-luot-teal mt-2 leading-tight">
             Curriculum designed for{' '}
             <span className="relative inline-block">
               <span className="relative z-10">real-world</span>

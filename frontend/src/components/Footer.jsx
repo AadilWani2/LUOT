@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-luot-teal text-white mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer className="bg-luot-teal text-white mt-12 sm:mt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
         <div className="md:col-span-2">
           <span className="font-serif text-3xl font-bold tracking-tight">LUOT</span>
           <p className="mt-3 text-sm text-white/75 max-w-md leading-relaxed">
