@@ -54,7 +54,7 @@ export default function About() {
                   'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80';
               }}
               alt="LUOT Campus"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 animate-image-settle"
             />
             <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-2xl shadow-md flex items-center gap-2.5">
               <Sparkles size={18} className="text-luot-gold" />

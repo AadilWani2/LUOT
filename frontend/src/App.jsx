@@ -5,6 +5,7 @@ import ProtectedRoute from './routes/ProtectedRoute';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollProgress from './components/ScrollProgress';
 
 // Public Pages
 import Home from './pages/public/Home';
@@ -43,6 +44,7 @@ export default function App() {
         <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-luot-bg">
           <Navbar />
+          <ScrollProgress />
           <main className="flex-1 pt-16 sm:pt-20 pb-20 md:pb-0">
             <Routes>
               {/* Public Routes */}

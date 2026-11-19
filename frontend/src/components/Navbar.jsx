@@ -101,9 +101,9 @@ export default function Navbar() {
                   key={link.name}
                   to={link.path}
                   className={({ isActive }) =>
-                    `text-sm font-medium transition-colors ${
+                    `text-sm font-medium transition-colors nav-link-underline ${
                       isActive
-                        ? 'text-luot-teal font-semibold underline decoration-luot-gold decoration-2 underline-offset-8'
+                        ? 'text-luot-teal font-semibold active'
                         : 'text-luot-teal/75 hover:text-luot-teal'
                     }`
                   }

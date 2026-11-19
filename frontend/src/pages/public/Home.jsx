@@ -14,6 +14,7 @@ import api from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
 import NoticeCard from '../../components/NoticeCard';
 import Reveal from '../../components/Reveal';
+import CountUp from '../../components/CountUp';
 import About from './About';
 import Admissions from './Admissions';
 import Curriculum from './Curriculum';
@@ -79,7 +80,7 @@ export default function Home() {
               <img
                 src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1400&q=80"
                 alt="Loyal University Of Technology Campus"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover animate-image-settle"
               />
             </div>
           </div>
@@ -200,7 +201,11 @@ export default function Home() {
         <section id="mobile-notices" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-luot-gold">
+              <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-luot-gold">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-luot-gold opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-luot-gold" />
+                </span>
                 Live Updates
               </span>
               <h2 className="font-serif text-3xl font-bold text-luot-teal mt-1">
@@ -251,18 +256,18 @@ export default function Home() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: GraduationCap, value: '25+', label: 'Degree Programs' },
-              { icon: Users, value: '140+', label: 'Research Faculty' },
-              { icon: Award, value: '94%', label: 'Placement Record' },
-              { icon: BookOpen, value: '8 Semesters', label: 'Structured Curriculum' },
-            ].map(({ icon: Icon, value, label }) => (
+              { icon: GraduationCap, end: 25, suffix: '+', label: 'Degree Programs' },
+              { icon: Users, end: 140, suffix: '+', label: 'Research Faculty' },
+              { icon: Award, end: 94, suffix: '%', label: 'Placement Record' },
+              { icon: BookOpen, end: 8, suffix: ' Semesters', label: 'Structured Curriculum' },
+            ].map(({ icon: Icon, end, suffix, label }) => (
               <div
                 key={label}
                 className="bg-white rounded-2xl p-6 border border-luot-teal/10 text-center"
               >
                 <Icon size={24} className="mx-auto text-luot-gold mb-3" />
                 <div className="font-serif text-2xl font-bold text-luot-teal">
-                  {value}
+                  <CountUp end={end} suffix={suffix} />
                 </div>
                 <div className="text-xs font-medium text-luot-teal/70 mt-1">
                   {label}

@@ -110,3 +110,42 @@ body {
   transform-origin: left center;
   animation: sweepIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }
+
+/* Editorial Image Settle (Ken Burns-Lite) */
+@keyframes imageSettle {
+  from {
+    opacity: 0;
+    transform: scale(1.07);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-image-settle {
+  animation: imageSettle 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Smooth Underline Draw on Desktop Navbar Links */
+.nav-link-underline {
+  position: relative;
+}
+
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-luot-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link-underline:hover::after,
+.nav-link-underline.active::after {
+  transform: scaleX(1);
+}
