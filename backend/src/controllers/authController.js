@@ -1,0 +1,23 @@
+import * as authService from '../services/authService.js';
+
+export const register = async (req, res) => {
+  try {
+    const result = await authService.registerUser(req.body);
+    res.status(201).json(result);
+  } catch (err) {
+    res.status(err.statusCode || 500).json({ message: err.message });
+  }
+};
+
+export const login = async (req, res) => {
+  try {
+    const result = await authService.loginUser(req.body);
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(err.statusCode || 500).json({ message: err.message });
+  }
+};
+
+export const getMe = async (req, res) => {
+  res.status(200).json({ user: req.user });
+};
