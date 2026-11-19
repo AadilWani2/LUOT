@@ -31,9 +31,13 @@
   animation: fadeInUp 0.65s ease-out 0.15s forwards;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-tap-highlight-color: transparent;
 }
 

@@ -13,6 +13,10 @@ import {
 import api from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
 import NoticeCard from '../../components/NoticeCard';
+import About from './About';
+import Admissions from './Admissions';
+import Curriculum from './Curriculum';
+import Gallery from './Gallery';
 
 export default function Home() {
   const { user, logout } = useAuth();
@@ -189,7 +193,7 @@ export default function Home() {
       </section>
 
       {/* 3. Public Notice Board Preview */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+      <section id="mobile-notices" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
             <span className="text-xs font-bold uppercase tracking-widest text-luot-gold">
@@ -248,6 +252,22 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* 5. Mobile All-In-One Continuous Experience */}
+      <div className="md:hidden mt-10 border-t border-luot-teal/10 divide-y divide-luot-teal/10">
+        <section id="mobile-about">
+          <About />
+        </section>
+        <section id="mobile-admissions">
+          <Admissions />
+        </section>
+        <section id="mobile-curriculum">
+          <Curriculum />
+        </section>
+        <section id="mobile-gallery">
+          <Gallery />
+        </section>
+      </div>
     </div>
   );
 }
