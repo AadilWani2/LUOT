@@ -1,12 +1,18 @@
-import { FileText, Calendar, AlertCircle, Building2 } from 'lucide-react';
+import { FileText, Calendar, AlertCircle, Building2, Trash2 } from 'lucide-react';
 import { API_BASE_URL } from '../api/axios';
 
-export default function NoticeCard({ notice }) {
+export default function NoticeCard({ notice, onDelete }) {
   const formattedDate = new Date(notice.createdAt).toLocaleDateString('en-IN', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
   });
+
+  const resolvedPdfUrl = notice.pdfUrl
+    ? notice.pdfUrl.startsWith('/uploads')
+      ? `${API_BASE_URL}${notice.pdfUrl}`
+      : notice.pdfUrl
+    : null;
 
   return (
     <article
@@ -21,8 +27,7 @@ export default function NoticeCard({ notice }) {
         <div className="flex flex-wrap items-center gap-2">
           {notice.isUrgent && (
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200">
-              <AlertCircle size={12} />
-              Urgent
+              <AlertCircle size={12} /> Urgent
             </span>
           )}
           <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-luot-teal/10 text-luot-teal">
@@ -36,8 +41,7 @@ export default function NoticeCard({ notice }) {
         </div>
 
         <span className="inline-flex items-center gap-1.5 text-xs text-luot-teal/60">
-          <Calendar size={13} />
-          {formattedDate}
+          <Calendar size={13} /> {formattedDate}
         </span>
       </div>
 
@@ -49,28 +53,34 @@ export default function NoticeCard({ notice }) {
         {notice.content}
       </p>
 
-      {/* Footer: Sender & PDF */}
+      {/* Footer: Sender, PDF & Optional Delete */}
       <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-luot-teal/10">
         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-luot-teal/70">
-          <Building2 size={14} />
-          {notice.postedByRole} — {notice.department}
+          <Building2 size={14} /> {notice.postedByRole} — {notice.department}
         </span>
 
-        {notice.pdfUrl && (
-          <a
-            href={
-              notice.pdfUrl.startsWith('/uploads')
-                ? `${API_BASE_URL}${notice.pdfUrl}`
-                : notice.pdfUrl
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-luot-teal hover:text-luot-gold transition-colors"
-          >
-            <FileText size={14} />
-            Download Circular (PDF)
-          </a>
-        )}
+        <div className="flex items-center gap-3">
+          {resolvedPdfUrl && (
+            <a
+              href={resolvedPdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-luot-teal hover:text-luot-gold transition-colors"
+            >
+              <FileText size={14} /> Download Circular (PDF)
+            </a>
+          )}
+          {onDelete && (
+            <button
+              onClick={onDelete}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-red-50 text-red-600 hover:bg-red-100 text-xs font-semibold transition-colors cursor-pointer"
+              title="Delete Notice"
+            >
+              <Trash2 size={13} /> Delete
+            </button>
+          )}
+        </div>
       </div>
     </article>
   );

@@ -11,13 +11,15 @@ cloudinary.config({
 
 export const uploadPdfToCloudinary = (fileBuffer, originalName) => {
   return new Promise((resolve, reject) => {
-    const cleanName = originalName.replace(/\.[^/.]+$/, '').replace(/\s+/g, '_');
+    const cleanName = originalName
+      .replace(/\.[^/.]+$/, '')
+      .replace(/[^a-zA-Z0-9_-]/g, '_');
 
     const stream = cloudinary.uploader.upload_stream(
       {
         folder: 'luot_notices',
-        resource_type: 'auto',
-        public_id: `notice-${Date.now()}-${cleanName}`,
+        resource_type: 'raw',
+        public_id: `notice-${Date.now()}-${cleanName}.pdf`,
       },
       (error, result) => {
         if (error) return reject(error);

@@ -108,6 +108,16 @@ export default function PrincipalDashboard() {
     }
   };
 
+  const handleDeleteNotice = async (id) => {
+    if (!window.confirm('Delete this notice permanently?')) return;
+    try {
+      await api.delete(`/notices/${id}`);
+      fetchAll();
+    } catch (err) {
+      alert(err.response?.data?.message || 'Could not delete notice');
+    }
+  };
+
   const pendingCount = hods.filter((h) => h.status === 'pending').length;
 
   return (
@@ -310,7 +320,11 @@ export default function PrincipalDashboard() {
 
           <div className="lg:col-span-7 space-y-4">
             {notices.map((n) => (
-              <NoticeCard key={n._id} notice={n} />
+              <NoticeCard
+                key={n._id}
+                notice={n}
+                onDelete={() => handleDeleteNotice(n._id)}
+              />
             ))}
           </div>
         </div>

@@ -241,18 +241,15 @@ export default function HodDashboard() {
               </div>
             ) : (
               notices.map((notice) => (
-                <div key={notice._id} className="relative">
-                  <NoticeCard notice={notice} />
-                  {notice.postedBy?._id === user?._id && (
-                    <button
-                      onClick={() => handleDeleteNotice(notice._id)}
-                      className="absolute top-5 right-5 p-2 rounded-full bg-red-50 text-red-600 hover:bg-red-100 cursor-pointer"
-                      title="Delete Notice"
-                    >
-                      <Trash2 size={14} />
-                    </button>
-                  )}
-                </div>
+                <NoticeCard
+                  key={notice._id}
+                  notice={notice}
+                  onDelete={
+                    (notice.postedBy?._id || notice.postedBy) === user?._id
+                      ? () => handleDeleteNotice(notice._id)
+                      : undefined
+                  }
+                />
               ))
             )}
           </div>
