@@ -13,6 +13,7 @@ import {
 import api from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
 import NoticeCard from '../../components/NoticeCard';
+import Reveal from '../../components/Reveal';
 import About from './About';
 import Admissions from './Admissions';
 import Curriculum from './Curriculum';
@@ -61,7 +62,7 @@ export default function Home() {
               A{' '}
               <span className="relative inline-block">
                 <span className="relative z-10">leading,</span>
-                <span className="absolute left-0 bottom-1 w-full h-4 bg-luot-gold -rotate-1 z-0 rounded-xs" />
+                <span className="absolute left-0 bottom-1 w-full h-4 bg-luot-gold -rotate-1 z-0 rounded-xs animate-highlight" />
               </span>{' '}
               future-ready technology university
             </h1>
@@ -104,7 +105,7 @@ export default function Home() {
               </div>
               <button
                 type="submit"
-                className="px-6 py-3 rounded-xl bg-luot-gold hover:bg-luot-gold-hover text-luot-teal font-semibold text-sm transition-colors cursor-pointer"
+                className="px-6 py-3 rounded-xl bg-luot-gold hover:bg-luot-gold-hover text-luot-teal font-semibold text-sm transition-all duration-200 active:scale-[0.98] cursor-pointer"
               >
                 Find course
               </button>
@@ -131,127 +132,146 @@ export default function Home() {
       </section>
 
       {/* 2. Semester Notification Strip (Auth-Aware) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="bg-luot-teal text-white rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-md">
-          <div className="flex items-start gap-4">
-            <div className="p-3 rounded-xl bg-luot-gold/20 text-luot-gold shrink-0">
-              <BellRing size={24} />
+      <Reveal>
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+          <div className="bg-luot-teal text-white rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-md">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-xl bg-luot-gold/20 text-luot-gold shrink-0">
+                <BellRing size={24} />
+              </div>
+              {user ? (
+                <div>
+                  <h3 className="font-serif text-xl font-semibold">
+                    Welcome back, {user.name}
+                  </h3>
+                  <p className="text-sm text-white/75 mt-1">
+                    {user.role === 'student'
+                      ? `Signed in as Semester ${user.semester} (${user.department}). Open your dashboard to view your semester circulars.`
+                      : `Signed in to the LUOT Administration Portal (${user.department || 'Administration'}).`}
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <h3 className="font-serif text-xl font-semibold">
+                    Log in for your semester-related notifications
+                  </h3>
+                  <p className="text-sm text-white/75 mt-1">
+                    Enrolled LUOT students get a personalized feed with only their
+                    semester circulars, urgent all-college alerts, fee portal, and
+                    complaint forum.
+                  </p>
+                </div>
+              )}
             </div>
+
             {user ? (
-              <div>
-                <h3 className="font-serif text-xl font-semibold">
-                  Welcome back, {user.name}
-                </h3>
-                <p className="text-sm text-white/75 mt-1">
-                  {user.role === 'student'
-                    ? `Signed in as Semester ${user.semester} (${user.department}). Open your dashboard to view your semester circulars.`
-                    : `Signed in to the LUOT Administration Portal (${user.department || 'Administration'}).`}
-                </p>
+              <div className="flex items-center gap-3 shrink-0 w-full md:w-auto">
+                <Link
+                  to={dashboardPath}
+                  className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-luot-gold hover:bg-luot-gold-hover text-luot-teal font-semibold text-sm transition-all duration-200 active:scale-[0.98] w-full md:w-auto"
+                >
+                  Open My Dashboard
+                  <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+                </Link>
+                <button
+                  onClick={logout}
+                  title="Log Out"
+                  aria-label="Log Out"
+                  className="p-3 rounded-full bg-white/10 hover:bg-red-500/80 text-white transition-colors cursor-pointer shrink-0"
+                >
+                  <LogOut size={18} />
+                </button>
               </div>
             ) : (
-              <div>
-                <h3 className="font-serif text-xl font-semibold">
-                  Log in for your semester-related notifications
-                </h3>
-                <p className="text-sm text-white/75 mt-1">
-                  Enrolled LUOT students get a personalized feed with only their
-                  semester circulars, urgent all-college alerts, fee portal, and
-                  complaint forum.
-                </p>
-              </div>
+              <Link
+                to="/login/student"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-luot-gold hover:bg-luot-gold-hover text-luot-teal font-semibold text-sm shrink-0 transition-all duration-200 active:scale-[0.98] w-full md:w-auto"
+              >
+                Student Portal Login
+                <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
             )}
           </div>
-
-          {user ? (
-            <div className="flex items-center gap-3 shrink-0 w-full md:w-auto">
-              <Link
-                to={dashboardPath}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-luot-gold hover:bg-luot-gold-hover text-luot-teal font-semibold text-sm transition-colors w-full md:w-auto"
-              >
-                Open My Dashboard
-                <ArrowRight size={16} />
-              </Link>
-              <button
-                onClick={logout}
-                title="Log Out"
-                aria-label="Log Out"
-                className="p-3 rounded-full bg-white/10 hover:bg-red-500/80 text-white transition-colors cursor-pointer shrink-0"
-              >
-                <LogOut size={18} />
-              </button>
-            </div>
-          ) : (
-            <Link
-              to="/login/student"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-luot-gold hover:bg-luot-gold-hover text-luot-teal font-semibold text-sm shrink-0 transition-colors w-full md:w-auto"
-            >
-              Student Portal Login
-              <ArrowRight size={16} />
-            </Link>
-          )}
-        </div>
-      </section>
+        </section>
+      </Reveal>
 
       {/* 3. Public Notice Board Preview */}
-      <section id="mobile-notices" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-luot-gold">
-              Live Updates
-            </span>
-            <h2 className="font-serif text-3xl font-bold text-luot-teal mt-1">
-              Public Notice Board
-            </h2>
+      <Reveal>
+        <section id="mobile-notices" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-luot-gold">
+                Live Updates
+              </span>
+              <h2 className="font-serif text-3xl font-bold text-luot-teal mt-1">
+                Public Notice Board
+              </h2>
+            </div>
+            <Link
+              to="/notices"
+              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-luot-teal hover:text-luot-gold transition-colors"
+            >
+              View all notices <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
           </div>
-          <Link
-            to="/notices"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-luot-teal hover:text-luot-gold transition-colors"
-          >
-            View all notices <ArrowRight size={16} />
-          </Link>
-        </div>
 
-        {loadingNotices ? (
-          <div className="bg-white rounded-2xl p-10 text-center text-sm text-luot-teal/60 border border-luot-teal/10">
-            Loading latest notices...
-          </div>
-        ) : notices.length === 0 ? (
-          <div className="bg-white rounded-2xl p-10 text-center text-sm text-luot-teal/65 border border-luot-teal/10">
-            No public notices published yet. Notices posted by the Principal or HODs for All College will appear here automatically.
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {notices.map((notice) => (
-              <NoticeCard key={notice._id} notice={notice} />
-            ))}
-          </div>
-        )}
-      </section>
+          {loadingNotices ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[1, 2, 3].map((i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-2xl p-6 border border-luot-teal/8 animate-pulse space-y-3"
+                >
+                  <div className="flex gap-2">
+                    <div className="h-5 w-20 bg-luot-teal/10 rounded-full" />
+                    <div className="h-5 w-16 bg-luot-gold/20 rounded-full" />
+                  </div>
+                  <div className="h-5 w-3/4 bg-luot-teal/10 rounded-lg" />
+                  <div className="h-3 w-full bg-luot-teal/8 rounded-lg" />
+                  <div className="h-3 w-5/6 bg-luot-teal/8 rounded-lg" />
+                </div>
+              ))}
+            </div>
+          ) : notices.length === 0 ? (
+            <div className="bg-white rounded-2xl p-10 text-center text-sm text-luot-teal/65 border border-luot-teal/10">
+              No public notices published yet. Notices posted by the Principal or HODs for All College will appear here automatically.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {notices.map((notice) => (
+                <NoticeCard key={notice._id} notice={notice} />
+              ))}
+            </div>
+          )}
+        </section>
+      </Reveal>
 
       {/* 4. Quick University Stats Strip */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { icon: GraduationCap, value: '25+', label: 'Degree Programs' },
-            { icon: Users, value: '140+', label: 'Research Faculty' },
-            { icon: Award, value: '94%', label: 'Placement Record' },
-            { icon: BookOpen, value: '8 Semesters', label: 'Structured Curriculum' },
-          ].map(({ icon: Icon, value, label }) => (
-            <div
-              key={label}
-              className="bg-white rounded-2xl p-6 border border-luot-teal/10 text-center"
-            >
-              <Icon size={24} className="mx-auto text-luot-gold mb-3" />
-              <div className="font-serif text-2xl font-bold text-luot-teal">
-                {value}
+      <Reveal>
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: GraduationCap, value: '25+', label: 'Degree Programs' },
+              { icon: Users, value: '140+', label: 'Research Faculty' },
+              { icon: Award, value: '94%', label: 'Placement Record' },
+              { icon: BookOpen, value: '8 Semesters', label: 'Structured Curriculum' },
+            ].map(({ icon: Icon, value, label }) => (
+              <div
+                key={label}
+                className="bg-white rounded-2xl p-6 border border-luot-teal/10 text-center"
+              >
+                <Icon size={24} className="mx-auto text-luot-gold mb-3" />
+                <div className="font-serif text-2xl font-bold text-luot-teal">
+                  {value}
+                </div>
+                <div className="text-xs font-medium text-luot-teal/70 mt-1">
+                  {label}
+                </div>
               </div>
-              <div className="text-xs font-medium text-luot-teal/70 mt-1">
-                {label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      </Reveal>
 
       {/* 5. Mobile All-In-One Continuous Experience */}
       <div className="md:hidden mt-10 border-t border-luot-teal/10 divide-y divide-luot-teal/10">

@@ -1,14 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "Lora", Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 
-  --color-luot-bg: #F8F9F7;
+  --color-luot-bg: #F9FAF8;
   --color-luot-teal: #0B3B36;
   --color-luot-teal-dark: #072A26;
   --color-luot-gold: #F4B829;
   --color-luot-gold-hover: #E0A419;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.02em;
 }
 
 @keyframes fadeInUp {
@@ -74,4 +78,35 @@ body {
 
 .animate-backdrop-in {
   animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Blur-Fade Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(4px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Gold Marker Sweep Animation */
+@keyframes sweepIn {
+  from {
+    transform: scaleX(0) rotate(-1deg);
+  }
+  to {
+    transform: scaleX(1) rotate(-1deg);
+  }
+}
+
+.animate-highlight {
+  transform-origin: left center;
+  animation: sweepIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }

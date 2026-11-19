@@ -89,7 +89,7 @@ export default function Admissions() {
             Start your{' '}
             <span className="relative inline-block">
               <span className="relative z-10">engineering</span>
-              <span className="absolute left-0 bottom-1 w-full h-3.5 bg-luot-gold/80 -rotate-1 z-0 rounded-xs" />
+              <span className="absolute left-0 bottom-1 w-full h-3.5 bg-luot-gold/80 -rotate-1 z-0 rounded-xs animate-highlight" />
             </span>{' '}
             journey at LUOT.
           </h1>

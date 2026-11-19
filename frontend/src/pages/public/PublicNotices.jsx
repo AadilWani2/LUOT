@@ -69,7 +69,7 @@ export default function PublicNotices() {
             Public{' '}
             <span className="relative inline-block">
               <span className="relative z-10">Notice Board</span>
-              <span className="absolute left-0 bottom-1 w-full h-3.5 bg-luot-gold/80 -rotate-1 z-0 rounded-xs" />
+              <span className="absolute left-0 bottom-1 w-full h-3.5 bg-luot-gold/80 -rotate-1 z-0 rounded-xs animate-highlight" />
             </span>
           </h1>
           <p className="mt-4 text-base text-luot-teal/75">
@@ -202,8 +202,21 @@ export default function PublicNotices() {
 
       {/* 4. Notice Grid */}
       {loading ? (
-        <div className="bg-white rounded-3xl border border-luot-teal/10 p-12 text-center text-sm text-luot-teal/60">
-          Loading official circulars...
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div
+              key={i}
+              className="bg-white rounded-2xl p-6 border border-luot-teal/8 animate-pulse space-y-3"
+            >
+              <div className="flex gap-2">
+                <div className="h-5 w-20 bg-luot-teal/10 rounded-full" />
+                <div className="h-5 w-16 bg-luot-gold/20 rounded-full" />
+              </div>
+              <div className="h-5 w-3/4 bg-luot-teal/10 rounded-lg" />
+              <div className="h-3 w-full bg-luot-teal/8 rounded-lg" />
+              <div className="h-3 w-5/6 bg-luot-teal/8 rounded-lg" />
+            </div>
+          ))}
         </div>
       ) : filtered.length === 0 ? (
         <div className="bg-white rounded-3xl border border-luot-teal/10 p-12 text-center">
