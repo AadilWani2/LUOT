@@ -1,4 +1,5 @@
 import * as noticeRepo from '../repositories/noticeRepository.js';
+import { uploadPdfToCloudinary } from '../config/cloudinary.js';
 
 export const getPublicNotices = async () => {
   return await noticeRepo.findPublicNotices();
@@ -13,7 +14,11 @@ export const getAllNoticesForAdmin = async () => {
 };
 
 export const publishNotice = async (data, user, file) => {
-  const pdfUrl = file ? `/uploads/notices/${file.filename}` : null;
+  let pdfUrl = null;
+
+  if (file) {
+    pdfUrl = await uploadPdfToCloudinary(file.buffer, file.originalname);
+  }
 
   return await noticeRepo.createNotice({
     title: data.title,
