@@ -9,6 +9,14 @@ import {
   Award,
   BookOpen,
   LogOut,
+  Briefcase,
+  Cpu,
+  Radio,
+  BrainCircuit,
+  Cog,
+  Building,
+  Code2,
+  Quote,
 } from 'lucide-react';
 import api from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
@@ -274,6 +282,224 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+      </Reveal>
+
+      {/* 5. Academic Departments Showcase */}
+      <Reveal>
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-luot-teal/10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-luot-gold">
+                Schools of Engineering
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-luot-teal mt-1">
+                Academic Departments
+              </h2>
+            </div>
+            <Link
+              to="/curriculum"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-luot-teal hover:text-luot-gold transition-colors group"
+            >
+              Explore Full Curriculum
+              <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              {
+                name: 'Computer Science & Eng.',
+                code: 'B.Tech • 4 Years',
+                desc: 'Systems programming, distributed cloud architecture, and software engineering.',
+                icon: Cpu,
+              },
+              {
+                name: 'AI & Data Science',
+                code: 'B.Tech • 4 Years',
+                desc: 'Machine learning, neural networks, statistical modeling, and applied AI.',
+                icon: BrainCircuit,
+              },
+              {
+                name: 'Electronics & Comm.',
+                code: 'B.Tech • 4 Years',
+                desc: 'VLSI design, embedded microcontrollers, IoT hardware, and 5G networks.',
+                icon: Radio,
+              },
+              {
+                name: 'Information Technology',
+                code: 'B.Tech • 4 Years',
+                desc: 'Full-stack web systems, cybersecurity, enterprise databases, and DevOps.',
+                icon: Code2,
+              },
+              {
+                name: 'Mechanical Engineering',
+                code: 'B.Tech • 4 Years',
+                desc: 'Robotics, CAD/CAM manufacturing, thermal systems, and automation.',
+                icon: Cog,
+              },
+              {
+                name: 'Civil Engineering',
+                code: 'B.Tech • 4 Years',
+                desc: 'Structural design, smart infrastructure, GIS mapping, and green construction.',
+                icon: Building,
+              },
+            ].map((dept) => {
+              const Icon = dept.icon;
+              return (
+                <Link
+                  key={dept.name}
+                  to="/curriculum"
+                  className="group bg-white rounded-2xl p-6 border border-luot-teal/10 hover:border-luot-gold/60 hover:shadow-md transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-11 h-11 rounded-xl bg-luot-teal/8 text-luot-teal group-hover:bg-luot-teal group-hover:text-luot-gold transition-colors flex items-center justify-center mb-4">
+                      <Icon size={20} />
+                    </div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-luot-teal/55">
+                      {dept.code}
+                    </span>
+                    <h3 className="font-serif text-xl font-bold text-luot-teal mt-1">
+                      {dept.name}
+                    </h3>
+                    <p className="text-xs text-luot-teal/70 mt-2 leading-relaxed">
+                      {dept.desc}
+                    </p>
+                  </div>
+                  <span className="mt-5 inline-flex items-center gap-1 text-xs font-semibold text-luot-teal group-hover:text-luot-gold transition-colors">
+                    View Syllabus <ArrowRight size={13} />
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      </Reveal>
+
+      {/* 6. Placements & Industry Partners */}
+      <Reveal>
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-luot-teal/10 shadow-xs">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-luot-gold">
+                  <Briefcase size={14} /> Career Outcomes
+                </span>
+                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-luot-teal mt-2 leading-tight">
+                  Built for industry from Semester 1.
+                </h2>
+                <p className="text-sm text-luot-teal/75 mt-3 leading-relaxed">
+                  Our Training & Placement Cell partners with leading engineering
+                  firms, product startups, and research labs for internships and
+                  full-time roles.
+                </p>
+              </div>
+
+              <div className="lg:col-span-7 grid grid-cols-3 gap-4">
+                {[
+                  { value: '95%', label: 'Placement Rate' },
+                  { value: '24 LPA', label: 'Highest Package' },
+                  { value: '120+', label: 'Hiring Partners' },
+                ].map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="bg-luot-bg rounded-2xl p-5 text-center border border-luot-teal/8"
+                  >
+                    <p className="font-serif text-2xl sm:text-3xl font-bold text-luot-teal">
+                      {stat.value}
+                    </p>
+                    <p className="text-[11px] font-semibold text-luot-teal/65 mt-1">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Recruiter Pills */}
+            <div className="mt-8 pt-6 border-t border-luot-teal/10 flex flex-wrap items-center gap-2.5">
+              <span className="text-xs font-semibold text-luot-teal/55 mr-2">
+                Recent Recruiters:
+              </span>
+              {['TCS', 'Infosys', 'Microsoft', 'Atlassian', 'L&T Tech', 'Wipro', 'Bosch', 'Zoho'].map(
+                (company) => (
+                  <span
+                    key={company}
+                    className="px-3.5 py-1.5 rounded-full bg-luot-bg border border-luot-teal/10 text-xs font-semibold text-luot-teal/80"
+                  >
+                    {company}
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      {/* 7. Editorial Principal's Message */}
+      <Reveal>
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="bg-luot-teal text-white rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+            <Quote
+              size={120}
+              className="absolute -top-4 -right-4 text-white/5 pointer-events-none"
+            />
+            <div className="max-w-3xl relative z-10">
+              <span className="text-xs font-bold uppercase tracking-widest text-luot-gold">
+                From the Principal&apos;s Desk
+              </span>
+              <blockquote className="font-serif text-2xl sm:text-3xl font-medium leading-snug mt-4">
+                &ldquo;At Loyal University Of Technology, we don&apos;t just teach
+                students to pass examinations—we train engineers to build
+                resilient systems, question assumptions, and lead with integrity.&rdquo;
+              </blockquote>
+              <div className="mt-6 pt-5 border-t border-white/15 flex items-center justify-between flex-wrap gap-4">
+                <div>
+                  <p className="font-serif text-lg font-bold">Dr. Rajesh Verma</p>
+                  <p className="text-xs text-white/70">
+                    Principal &amp; Director, Loyal University Of Technology
+                  </p>
+                </div>
+                <Link
+                  to="/about"
+                  className="text-xs font-semibold text-luot-gold hover:underline inline-flex items-center gap-1"
+                >
+                  Read University Vision <ArrowRight size={14} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      {/* 8. Closing Admissions CTA */}
+      <Reveal>
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
+          <div className="bg-luot-gold/20 border border-luot-gold/40 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div>
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-luot-teal">
+                Admissions Open for 2026–27
+              </h2>
+              <p className="text-sm text-luot-teal/80 mt-1.5 max-w-xl">
+                Explore eligibility criteria, seat intake, and submit your
+                application online in minutes.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3 shrink-0">
+              <Link
+                to="/admissions"
+                className="px-6 py-3 rounded-full bg-luot-teal hover:bg-luot-teal-dark text-white font-semibold text-sm inline-flex items-center gap-2 transition-colors active:scale-[0.98]"
+              >
+                Apply Now <ArrowRight size={15} />
+              </Link>
+              <Link
+                to="/gallery"
+                className="px-6 py-3 rounded-full bg-white border border-luot-teal/20 text-luot-teal hover:bg-luot-bg font-semibold text-sm transition-colors active:scale-[0.98]"
+              >
+                Tour Campus
+              </Link>
+            </div>
           </div>
         </section>
       </Reveal>
