@@ -25,6 +25,10 @@ import NoticeCard from '../../components/NoticeCard';
 import Reveal from '../../components/Reveal';
 import CountUp from '../../components/CountUp';
 import SEO from '../../components/SEO';
+import { motion } from 'framer-motion';
+import TextMaskReveal from '../../components/TextMaskReveal';
+import ParallaxImage from '../../components/ParallaxImage';
+import MagneticButton from '../../components/MagneticButton';
 
 export default function Home() {
   const { user, logout } = useAuth();
@@ -98,13 +102,15 @@ export default function Home() {
             Admissions Open 2026–27
           </span>
 
-          <h1 className="font-serif text-[2.1rem] sm:text-5xl lg:text-6xl font-bold text-luot-teal leading-[1.12] tracking-tight">
-            Shaping tomorrow&apos;s{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10">leading</span>
-              <span className="absolute left-0 bottom-0.5 sm:bottom-1 w-full h-2.5 sm:h-3.5 bg-luot-gold/80 -rotate-1 z-0 rounded-xs animate-highlight" />
-            </span>{' '}
-            engineers &amp; innovators.
+          <h1 className="font-serif text-[2rem] leading-[1.12] sm:text-5xl lg:text-[3.75rem] font-bold text-luot-teal tracking-tight">
+            <TextMaskReveal delay={0.05}>Shaping tomorrow&apos;s</TextMaskReveal>{' '}
+            <TextMaskReveal delay={0.15}>
+              <span className="relative inline-block">
+                <span className="relative z-10">leading</span>
+                <span className="absolute left-0 bottom-0.5 sm:bottom-1 w-full h-2.5 sm:h-3.5 bg-luot-gold/80 -rotate-1 z-0 rounded-xs animate-highlight" />
+              </span>
+            </TextMaskReveal>{' '}
+            <TextMaskReveal delay={0.25}>engineers &amp; innovators.</TextMaskReveal>
           </h1>
 
           <p className="mt-3 sm:mt-4 text-sm sm:text-base text-luot-teal/75 leading-relaxed max-w-xl">
@@ -172,13 +178,13 @@ export default function Home() {
         {/* Hero Visual + Integrated Course Finder */}
         <div className="grid grid-cols-1 lg:grid-cols-12 items-start gap-4 lg:gap-0">
           {/* Campus Photo */}
-          <div className="lg:col-span-12 relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-md bg-luot-teal/10 aspect-[16/10] sm:aspect-[16/8] lg:aspect-[21/9]">
-            <img
+          <div className="lg:col-span-12 relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-md">
+            <ParallaxImage
               src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
               alt="Loyal University Of Technology Campus"
-              className="w-full h-full object-cover animate-image-settle"
+              className="w-full rounded-2xl sm:rounded-3xl bg-luot-teal/10 aspect-[4/3] sm:aspect-[16/8] lg:aspect-[21/9]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-luot-teal/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-luot-teal/60 via-transparent to-transparent pointer-events-none" />
           </div>
 
           {/* Course Finder Card */}
@@ -210,12 +216,14 @@ export default function Home() {
                   className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl sm:rounded-full bg-luot-bg border border-luot-teal/15 text-sm text-luot-teal placeholder:text-luot-teal/45 focus:outline-none focus:border-luot-teal focus:bg-white"
                 />
               </div>
-              <button
-                type="submit"
-                className="w-full sm:w-auto px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-full bg-luot-teal hover:bg-luot-teal-dark text-white font-semibold text-sm transition-colors active:scale-[0.98] cursor-pointer shrink-0"
-              >
-                Explore
-              </button>
+              <MagneticButton>
+                <button
+                  type="submit"
+                  className="w-full sm:w-auto px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-full bg-luot-teal hover:bg-luot-teal-dark text-white font-semibold text-sm transition-colors active:scale-[0.98] cursor-pointer shrink-0"
+                >
+                  Explore
+                </button>
+              </MagneticButton>
             </form>
 
             {/* Quick Department Chips */}
@@ -392,7 +400,16 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.08 } },
+            }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
+          >
             {[
               {
                 name: 'Computer Science & Eng.',
@@ -433,32 +450,44 @@ export default function Home() {
             ].map((dept) => {
               const Icon = dept.icon;
               return (
-                <Link
+                <motion.div
                   key={dept.name}
-                  to="/curriculum"
-                  className="group bg-white rounded-2xl p-5 sm:p-6 border border-luot-teal/10 hover:border-luot-gold/60 hover:shadow-md transition-all flex flex-col justify-between"
+                  variants={{
+                    hidden: { opacity: 0, y: 24 },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+                    },
+                  }}
+                  className="h-full"
                 >
-                  <div>
-                    <div className="w-10 h-10 rounded-xl bg-luot-teal/8 text-luot-teal group-hover:bg-luot-teal group-hover:text-luot-gold transition-colors flex items-center justify-center mb-3 sm:mb-4">
-                      <Icon size={19} />
+                  <Link
+                    to="/curriculum"
+                    className="group bg-white rounded-2xl p-5 sm:p-6 border border-luot-teal/10 hover:border-luot-gold/60 hover:shadow-md transition-all flex flex-col justify-between h-full"
+                  >
+                    <div>
+                      <div className="w-10 h-10 rounded-xl bg-luot-teal/8 text-luot-teal group-hover:bg-luot-teal group-hover:text-luot-gold transition-colors flex items-center justify-center mb-3 sm:mb-4">
+                        <Icon size={19} />
+                      </div>
+                      <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-luot-teal/55">
+                        {dept.code}
+                      </span>
+                      <h3 className="font-serif text-lg sm:text-xl font-bold text-luot-teal mt-1">
+                        {dept.name}
+                      </h3>
+                      <p className="text-xs text-luot-teal/70 mt-1.5 sm:mt-2 leading-relaxed">
+                        {dept.desc}
+                      </p>
                     </div>
-                    <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-luot-teal/55">
-                      {dept.code}
+                    <span className="mt-4 sm:mt-5 inline-flex items-center gap-1 text-xs font-semibold text-luot-teal group-hover:text-luot-gold transition-colors">
+                      View Syllabus <ArrowRight size={13} />
                     </span>
-                    <h3 className="font-serif text-lg sm:text-xl font-bold text-luot-teal mt-1">
-                      {dept.name}
-                    </h3>
-                    <p className="text-xs text-luot-teal/70 mt-1.5 sm:mt-2 leading-relaxed">
-                      {dept.desc}
-                    </p>
-                  </div>
-                  <span className="mt-4 sm:mt-5 inline-flex items-center gap-1 text-xs font-semibold text-luot-teal group-hover:text-luot-gold transition-colors">
-                    View Syllabus <ArrowRight size={13} />
-                  </span>
-                </Link>
+                  </Link>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </section>
       </Reveal>
 
@@ -572,18 +601,22 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-wrap gap-2.5 sm:gap-3 shrink-0 w-full sm:w-auto">
-              <Link
-                to="/admissions"
-                className="flex-1 sm:flex-none px-6 py-3 rounded-full bg-luot-teal hover:bg-luot-teal-dark text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors active:scale-[0.98]"
-              >
-                Apply Now <ArrowRight size={14} />
-              </Link>
-              <Link
-                to="/gallery"
-                className="flex-1 sm:flex-none px-6 py-3 rounded-full bg-white border border-luot-teal/20 text-luot-teal hover:bg-luot-bg font-semibold text-xs sm:text-sm inline-flex items-center justify-center transition-colors active:scale-[0.98]"
-              >
-                Tour Campus
-              </Link>
+              <MagneticButton>
+                <Link
+                  to="/admissions"
+                  className="flex-1 sm:flex-none px-6 py-3 rounded-full bg-luot-teal hover:bg-luot-teal-dark text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors active:scale-[0.98]"
+                >
+                  Apply Now <ArrowRight size={14} />
+                </Link>
+              </MagneticButton>
+              <MagneticButton>
+                <Link
+                  to="/gallery"
+                  className="flex-1 sm:flex-none px-6 py-3 rounded-full bg-white border border-luot-teal/20 text-luot-teal hover:bg-luot-bg font-semibold text-xs sm:text-sm inline-flex items-center justify-center transition-colors active:scale-[0.98]"
+                >
+                  Tour Campus
+                </Link>
+              </MagneticButton>
             </div>
           </div>
         </section>
