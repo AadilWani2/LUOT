@@ -7,6 +7,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
 import SmoothScroll from './components/SmoothScroll';
+import Preloader from './components/Preloader';
+import AwwwardsCursor from './components/AwwwardsCursor';
 
 // Public Pages
 import Home from './pages/public/Home';
@@ -43,6 +45,8 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <SmoothScroll>
+          <Preloader />
+          <AwwwardsCursor />
           <ScrollToTop />
           <div className="min-h-screen flex flex-col bg-luot-bg">
             <Navbar />

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
-  Search,
   BellRing,
   ArrowRight,
   GraduationCap,
@@ -10,12 +9,6 @@ import {
   BookOpen,
   LogOut,
   Briefcase,
-  Cpu,
-  Radio,
-  BrainCircuit,
-  Cog,
-  Building,
-  Code2,
   Quote,
   Sparkles,
 } from 'lucide-react';
@@ -29,6 +22,8 @@ import { motion } from 'framer-motion';
 import TextMaskReveal from '../../components/TextMaskReveal';
 import ParallaxImage from '../../components/ParallaxImage';
 import MagneticButton from '../../components/MagneticButton';
+import ScrollExpandHero from '../../components/ScrollExpandHero';
+import StackingDepartmentCards from '../../components/StackingDepartmentCards';
 
 export default function Home() {
   const { user, logout } = useAuth();
@@ -38,7 +33,6 @@ export default function Home() {
       : user?.role === 'hod'
       ? '/hod/dashboard'
       : '/student/dashboard';
-  const [searchQuery, setSearchQuery] = useState('');
   const [notices, setNotices] = useState([]);
   const [loadingNotices, setLoadingNotices] = useState(true);
   const navigate = useNavigate();
@@ -56,15 +50,6 @@ export default function Home() {
     };
     fetchPublicNotices();
   }, []);
-
-  const handleCourseSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/curriculum?q=${encodeURIComponent(searchQuery)}`);
-    } else {
-      navigate('/curriculum');
-    }
-  };
 
   return (
     <div className="overflow-x-hidden">
@@ -93,37 +78,15 @@ export default function Home() {
           },
         }}
       />
-      {/* 1. Hero & Program Finder */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-10 pb-8 sm:pb-14">
-        {/* Top Editorial Headline */}
-        <div className="max-w-3xl mb-5 sm:mb-8 animate-fade-up">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-luot-gold/20 text-luot-teal text-xs font-bold uppercase tracking-wider mb-3">
-            <Sparkles size={13} className="text-luot-gold" />
-            Admissions Open 2026–27
-          </span>
+      {/* 1. Flagship Scroll-Scrubbed Expanding Hero */}
+      <ScrollExpandHero />
 
-          <h1 className="font-serif text-[2rem] leading-[1.12] sm:text-5xl lg:text-[3.75rem] font-bold text-luot-teal tracking-tight">
-            <TextMaskReveal delay={0.05}>Shaping tomorrow&apos;s</TextMaskReveal>{' '}
-            <TextMaskReveal delay={0.15}>
-              <span className="relative inline-block">
-                <span className="relative z-10">leading</span>
-                <span className="absolute left-0 bottom-0.5 sm:bottom-1 w-full h-2.5 sm:h-3.5 bg-luot-gold/80 -rotate-1 z-0 rounded-xs animate-highlight" />
-              </span>
-            </TextMaskReveal>{' '}
-            <TextMaskReveal delay={0.25}>engineers &amp; innovators.</TextMaskReveal>
-          </h1>
-
-          <p className="mt-3 sm:mt-4 text-sm sm:text-base text-luot-teal/75 leading-relaxed max-w-xl">
-            Loyal University Of Technology blends rigorous engineering
-            foundations with hands-on research labs, industry mentorship, and
-            transparent academic governance.
-          </p>
-        </div>
-
-        {/* Mobile Quick Action Cards (4-Grid Touch Navigation) */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
+      {/* Quick Action Touch Navigation */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 -mt-6 sm:-mt-10 relative z-30">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
           <Link
             to="/admissions"
+            data-cursor="Apply"
             className="p-3.5 rounded-2xl bg-white border border-luot-teal/10 hover:border-luot-gold/50 transition-all flex items-center gap-2.5 shadow-xs"
           >
             <div className="w-9 h-9 rounded-xl bg-luot-gold/20 text-luot-teal flex items-center justify-center shrink-0">
@@ -137,6 +100,7 @@ export default function Home() {
 
           <Link
             to="/curriculum"
+            data-cursor="Syllabus"
             className="p-3.5 rounded-2xl bg-white border border-luot-teal/10 hover:border-luot-gold/50 transition-all flex items-center gap-2.5 shadow-xs"
           >
             <div className="w-9 h-9 rounded-xl bg-luot-teal/10 text-luot-teal flex items-center justify-center shrink-0">
@@ -150,6 +114,7 @@ export default function Home() {
 
           <Link
             to="/notices"
+            data-cursor="Notices"
             className="p-3.5 rounded-2xl bg-white border border-luot-teal/10 hover:border-luot-gold/50 transition-all flex items-center gap-2.5 shadow-xs"
           >
             <div className="w-9 h-9 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0">
@@ -163,6 +128,7 @@ export default function Home() {
 
           <Link
             to="/gallery"
+            data-cursor="Campus"
             className="p-3.5 rounded-2xl bg-white border border-luot-teal/10 hover:border-luot-gold/50 transition-all flex items-center gap-2.5 shadow-xs"
           >
             <div className="w-9 h-9 rounded-xl bg-luot-teal/10 text-luot-teal flex items-center justify-center shrink-0">
@@ -174,75 +140,7 @@ export default function Home() {
             </div>
           </Link>
         </div>
-
-        {/* Hero Visual + Integrated Course Finder */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-start gap-4 lg:gap-0">
-          {/* Campus Photo */}
-          <div className="lg:col-span-12 relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-md">
-            <ParallaxImage
-              src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
-              alt="Loyal University Of Technology Campus"
-              className="w-full rounded-2xl sm:rounded-3xl bg-luot-teal/10 aspect-[4/3] sm:aspect-[16/8] lg:aspect-[21/9]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-luot-teal/60 via-transparent to-transparent pointer-events-none" />
-          </div>
-
-          {/* Course Finder Card */}
-          <div className="lg:col-span-7 lg:-mt-28 mx-0 lg:ml-8 relative z-20 bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-luot-teal/10 p-4 sm:p-7">
-            <div className="flex items-center justify-between gap-2 mb-3">
-              <h2 className="font-serif text-lg sm:text-2xl font-bold text-luot-teal">
-                Find your program
-              </h2>
-              <Link
-                to="/curriculum"
-                className="text-xs font-semibold text-luot-teal/70 hover:text-luot-gold inline-flex items-center gap-1"
-              >
-                All Courses <ArrowRight size={13} />
-              </Link>
-            </div>
-
-            {/* Search Input Bar */}
-            <form onSubmit={handleCourseSearch} className="flex flex-col sm:flex-row gap-2.5">
-              <div className="relative flex-1">
-                <Search
-                  size={16}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-luot-teal/45"
-                />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search B.Tech CSE, AI, Robotics..."
-                  className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl sm:rounded-full bg-luot-bg border border-luot-teal/15 text-sm text-luot-teal placeholder:text-luot-teal/45 focus:outline-none focus:border-luot-teal focus:bg-white"
-                />
-              </div>
-              <MagneticButton>
-                <button
-                  type="submit"
-                  className="w-full sm:w-auto px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-full bg-luot-teal hover:bg-luot-teal-dark text-white font-semibold text-sm transition-colors active:scale-[0.98] cursor-pointer shrink-0"
-                >
-                  Explore
-                </button>
-              </MagneticButton>
-            </form>
-
-            {/* Quick Department Chips */}
-            <div className="mt-4 pt-3 border-t border-luot-teal/10 flex flex-nowrap sm:flex-wrap overflow-x-auto no-scrollbar gap-2">
-              {['Computer Science', 'AI & Data Science', 'Electronics', 'Mechanical', 'Civil'].map(
-                (course) => (
-                  <Link
-                    key={course}
-                    to="/curriculum"
-                    className="shrink-0 px-3 py-1 rounded-full bg-luot-bg hover:bg-luot-gold/25 text-luot-teal text-xs font-semibold transition-colors"
-                  >
-                    {course}
-                  </Link>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
 
       {/* 2. Notification Strip (Auth-Aware) */}
       <Reveal>
@@ -287,6 +185,7 @@ export default function Home() {
             ) : (
               <Link
                 to="/login/student"
+                data-cursor="Login"
                 className="group w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-luot-gold hover:bg-luot-gold-hover text-luot-teal font-semibold text-sm shrink-0 transition-all duration-200 active:scale-[0.98]"
               >
                 Student Portal Login
@@ -379,117 +278,8 @@ export default function Home() {
         </section>
       </Reveal>
 
-      {/* 5. Academic Departments Showcase */}
-      <Reveal>
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 border-t border-luot-teal/10">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8 sm:mb-10">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-luot-gold">
-                Schools of Engineering
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-luot-teal mt-1">
-                Academic Departments
-              </h2>
-            </div>
-            <Link
-              to="/curriculum"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-luot-teal hover:text-luot-gold transition-colors group"
-            >
-              Explore Full Curriculum
-              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-          </div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.08 } },
-            }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
-          >
-            {[
-              {
-                name: 'Computer Science & Eng.',
-                code: 'B.Tech • 4 Years',
-                desc: 'Systems programming, distributed cloud architecture, and software engineering.',
-                icon: Cpu,
-              },
-              {
-                name: 'AI & Data Science',
-                code: 'B.Tech • 4 Years',
-                desc: 'Machine learning, neural networks, statistical modeling, and applied AI.',
-                icon: BrainCircuit,
-              },
-              {
-                name: 'Electronics & Comm.',
-                code: 'B.Tech • 4 Years',
-                desc: 'VLSI design, embedded microcontrollers, IoT hardware, and 5G networks.',
-                icon: Radio,
-              },
-              {
-                name: 'Information Technology',
-                code: 'B.Tech • 4 Years',
-                desc: 'Full-stack web systems, cybersecurity, enterprise databases, and DevOps.',
-                icon: Code2,
-              },
-              {
-                name: 'Mechanical Engineering',
-                code: 'B.Tech • 4 Years',
-                desc: 'Robotics, CAD/CAM manufacturing, thermal systems, and automation.',
-                icon: Cog,
-              },
-              {
-                name: 'Civil Engineering',
-                code: 'B.Tech • 4 Years',
-                desc: 'Structural design, smart infrastructure, GIS mapping, and green construction.',
-                icon: Building,
-              },
-            ].map((dept) => {
-              const Icon = dept.icon;
-              return (
-                <motion.div
-                  key={dept.name}
-                  variants={{
-                    hidden: { opacity: 0, y: 24 },
-                    show: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
-                    },
-                  }}
-                  className="h-full"
-                >
-                  <Link
-                    to="/curriculum"
-                    className="group bg-white rounded-2xl p-5 sm:p-6 border border-luot-teal/10 hover:border-luot-gold/60 hover:shadow-md transition-all flex flex-col justify-between h-full"
-                  >
-                    <div>
-                      <div className="w-10 h-10 rounded-xl bg-luot-teal/8 text-luot-teal group-hover:bg-luot-teal group-hover:text-luot-gold transition-colors flex items-center justify-center mb-3 sm:mb-4">
-                        <Icon size={19} />
-                      </div>
-                      <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-luot-teal/55">
-                        {dept.code}
-                      </span>
-                      <h3 className="font-serif text-lg sm:text-xl font-bold text-luot-teal mt-1">
-                        {dept.name}
-                      </h3>
-                      <p className="text-xs text-luot-teal/70 mt-1.5 sm:mt-2 leading-relaxed">
-                        {dept.desc}
-                      </p>
-                    </div>
-                    <span className="mt-4 sm:mt-5 inline-flex items-center gap-1 text-xs font-semibold text-luot-teal group-hover:text-luot-gold transition-colors">
-                      View Syllabus <ArrowRight size={13} />
-                    </span>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </section>
-      </Reveal>
+      {/* 5. Sticky Stacking Depth Cards (Schools of Engineering) */}
+      <StackingDepartmentCards />
 
       {/* 6. Placements & Industry Partners */}
       <Reveal>
@@ -604,6 +394,7 @@ export default function Home() {
               <MagneticButton>
                 <Link
                   to="/admissions"
+                  data-cursor="Apply"
                   className="flex-1 sm:flex-none px-6 py-3 rounded-full bg-luot-teal hover:bg-luot-teal-dark text-white font-semibold text-xs sm:text-sm inline-flex items-center justify-center gap-2 transition-colors active:scale-[0.98]"
                 >
                   Apply Now <ArrowRight size={14} />
@@ -612,6 +403,7 @@ export default function Home() {
               <MagneticButton>
                 <Link
                   to="/gallery"
+                  data-cursor="Tour"
                   className="flex-1 sm:flex-none px-6 py-3 rounded-full bg-white border border-luot-teal/20 text-luot-teal hover:bg-luot-bg font-semibold text-xs sm:text-sm inline-flex items-center justify-center transition-colors active:scale-[0.98]"
                 >
                   Tour Campus
