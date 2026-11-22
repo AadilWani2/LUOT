@@ -5,10 +5,6 @@ import ProtectedRoute from './routes/ProtectedRoute';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import ScrollProgress from './components/ScrollProgress';
-import SmoothScroll from './components/SmoothScroll';
-import Preloader from './components/Preloader';
-import AwwwardsCursor from './components/AwwwardsCursor';
 
 // Public Pages
 import Home from './pages/public/Home';
@@ -44,78 +40,73 @@ export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <SmoothScroll>
-          <Preloader />
-          <AwwwardsCursor />
-          <ScrollToTop />
-          <div className="min-h-screen flex flex-col bg-luot-bg">
-            <Navbar />
-            <ScrollProgress />
-            <main className="flex-1 pt-16 sm:pt-20">
-              <Routes>
-                {/* Public Routes */}
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/admissions" element={<Admissions />} />
-                <Route path="/curriculum" element={<Curriculum />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/notices" element={<PublicNotices />} />
+        <ScrollToTop />
+        <div className="min-h-screen flex flex-col bg-luot-bg">
+          <Navbar />
+          <main className="flex-1">
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/admissions" element={<Admissions />} />
+              <Route path="/curriculum" element={<Curriculum />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/notices" element={<PublicNotices />} />
 
-                {/* Auth Routes */}
-                <Route path="/login/student" element={<StudentLogin />} />
-                <Route path="/login/faculty" element={<FacultyLogin />} />
-                <Route path="/register" element={<Register />} />
+              {/* Auth Routes */}
+              <Route path="/login/student" element={<StudentLogin />} />
+              <Route path="/login/faculty" element={<FacultyLogin />} />
+              <Route path="/register" element={<Register />} />
 
-                {/* Student Portal */}
-                <Route
-                  path="/student/dashboard"
-                  element={
-                    <ProtectedRoute allowedRoles={['student']}>
-                      <StudentDashboard />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/student/fees"
-                  element={
-                    <ProtectedRoute allowedRoles={['student']}>
-                      <FeePayment />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/student/complaints"
-                  element={
-                    <ProtectedRoute allowedRoles={['student']}>
-                      <ComplaintForum />
-                    </ProtectedRoute>
-                  }
-                />
+              {/* Student Portal */}
+              <Route
+                path="/student/dashboard"
+                element={
+                  <ProtectedRoute allowedRoles={['student']}>
+                    <StudentDashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/student/fees"
+                element={
+                  <ProtectedRoute allowedRoles={['student']}>
+                    <FeePayment />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/student/complaints"
+                element={
+                  <ProtectedRoute allowedRoles={['student']}>
+                    <ComplaintForum />
+                  </ProtectedRoute>
+                }
+              />
 
-                {/* HOD Portal */}
-                <Route
-                  path="/hod/dashboard"
-                  element={
-                    <ProtectedRoute allowedRoles={['hod']}>
-                      <HodDashboard />
-                    </ProtectedRoute>
-                  }
-                />
+              {/* HOD Portal */}
+              <Route
+                path="/hod/dashboard"
+                element={
+                  <ProtectedRoute allowedRoles={['hod']}>
+                    <HodDashboard />
+                  </ProtectedRoute>
+                }
+              />
 
-                {/* Principal (Super Admin) Portal */}
-                <Route
-                  path="/principal/dashboard"
-                  element={
-                    <ProtectedRoute allowedRoles={['super_admin']}>
-                      <PrincipalDashboard />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </SmoothScroll>
+              {/* Principal (Super Admin) Portal */}
+              <Route
+                path="/principal/dashboard"
+                element={
+                  <ProtectedRoute allowedRoles={['super_admin']}>
+                    <PrincipalDashboard />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
       </BrowserRouter>
     </AuthProvider>
   );

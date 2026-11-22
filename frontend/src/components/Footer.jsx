@@ -2,42 +2,32 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-luot-teal text-white mt-12 sm:mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
-        <div className="md:col-span-2">
-          <span className="font-serif text-3xl font-bold tracking-tight">LUOT</span>
-          <p className="mt-3 text-sm text-white/75 max-w-md leading-relaxed">
-            Loyal University Of Technology is dedicated to research-driven engineering,
-            computing, and applied sciences—preparing students for real-world innovation.
+    <footer className="border-t border-stone-200 bg-white mt-12">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+        <div>
+          <span className="font-serif text-xl font-semibold text-luot-teal">
+            LUOT
+          </span>
+          <p className="text-xs text-stone-500 mt-1">
+            Loyal University Of Technology · Engineering &amp; Applied Research
           </p>
         </div>
 
-        <div>
-          <h4 className="font-serif text-base font-semibold mb-4 text-luot-gold">
-            Quick Links
-          </h4>
-          <ul className="space-y-2 text-sm text-white/80">
-            <li><Link to="/about" className="hover:text-white">About LUOT</Link></li>
-            <li><Link to="/admissions" className="hover:text-white">Admissions 2026</Link></li>
-            <li><Link to="/curriculum" className="hover:text-white">Curriculum</Link></li>
-            <li><Link to="/notices" className="hover:text-white">Notice Board</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-serif text-base font-semibold mb-4 text-luot-gold">
-            Portals
-          </h4>
-          <ul className="space-y-2 text-sm text-white/80">
-            <li><Link to="/login/student" className="hover:text-white">Student Login</Link></li>
-            <li><Link to="/login/faculty" className="hover:text-white">Faculty / HOD Login</Link></li>
-            <li><Link to="/register" className="hover:text-white">New Registration</Link></li>
-          </ul>
+        <div className="flex flex-wrap gap-6 text-xs text-stone-500">
+          <Link to="/about" className="hover:text-luot-teal">About</Link>
+          <Link to="/admissions" className="hover:text-luot-teal">Admissions</Link>
+          <Link to="/curriculum" className="hover:text-luot-teal">Curriculum</Link>
+          <Link to="/gallery" className="hover:text-luot-teal">Gallery</Link>
+          <Link to="/notices" className="hover:text-luot-teal">Notices</Link>
+          <Link to="/login/student" className="hover:text-luot-teal">Student Portal</Link>
         </div>
       </div>
 
-      <div className="border-t border-white/10 py-5 text-center text-xs text-white/60">
-        © {new Date().getFullYear()} Loyal University Of Technology (LUOT). All rights reserved.
+      <div className="border-t border-stone-100">
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-stone-400">
+          <p>© {new Date().getFullYear()} Loyal University Of Technology. All rights reserved.</p>
+          <p>admissions@luot.edu.in</p>
+        </div>
       </div>
     </footer>
   );
